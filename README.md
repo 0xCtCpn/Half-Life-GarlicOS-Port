@@ -2,7 +2,7 @@
 
 Half-Life on the Anbernic RG35XX running GarlicOS, using the open-source Xash3D FWGS engine
 
-Needs the original (Non-H700) RG35XX with GarlicOS 1.4.9, the release zip, and Half-Life `valve/` data sourced from your Steam copy
+Needs the original (Non-H700) RG35XX with GarlicOS 1.4.9, the release zip, and Half-Life `valve/` data sourced from your own Steam copy
 
 ## Overview
 
@@ -13,7 +13,7 @@ The game engine and Half-Life's game logic are compiled from C/C++ source straig
 
 What was compiled: the [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs) engine (open-source recreation of Half-Life's engine) and [hlsdk-portable](https://github.com/FWGS/hlsdk-portable) (Half-Life's released SDK, game logic), plus SDL2/freetype/ALSA as support libraries - all in Docker from source, with device-specific patches applied first.
 
-Everything is packaged neatly in the release zip including engine, game logic, dependencies, and runtime all cross-compiled for `armhf`. The actual game content needs to be supplied from your own copy of the game.
+Everything is packaged neatly in the release zip including engine, game logic, dependencies, and runtime all cross-compiled for `armhf`.
 
 ## Install
 
