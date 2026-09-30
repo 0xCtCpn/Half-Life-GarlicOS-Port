@@ -1,13 +1,6 @@
 FROM debian:bookworm
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Device libc is Ubuntu EGLIBC 2.15 (banner read from garlic.img SYSTEM partition).
-# ELF audit proved bookworm-glibc builds need GLIBC_2.16..2.34, incl. symbols
-# absent from 2.15 entirely (memfd_create, statx...) - no glibc toolchain can
-# target it, and old Debian bases (jessie: no cross-gcc; bullseye: EOL 404s)
-# are dead ends. musl dynamic build instead; musl libc + loader ship on SD,
-# HalfLife.sh stages the loader into /tmp (SYSTEM /lib is read-only).
-# (Loader ships as a copy of libc.so: the toolchain symlink is absolute.)
 RUN apt-get update && apt-get install -y \
     gcc g++ make pkg-config git python3 curl ca-certificates \
     autoconf automake libtool file xz-utils bzip2 \
@@ -59,9 +52,6 @@ RUN curl -sSL --retry 3 --retry-all-errors https://www.alsa-project.org/files/pu
 # INTERP points at /tmp (SYSTEM /lib is read-only - HalfLife.sh stages it).
 RUN git clone --depth 1 https://github.com/FWGS/xash3d-fwgs.git xash3d-fwgs && \
     cd xash3d-fwgs && git submodule update --init --recursive || true
-# Marker instrumentation: pin the init hang with power-cut-proof breadcrumbs.
-# Each marker does open/write/fsync/close on ./mark.log (no stdio buffering,
-# survives hard reset) plus a Con_Printf twin. Removed once hang is found.
 RUN python3 - <<'PYEOF'
 import re
 def patch(path, pairs):
@@ -91,7 +81,6 @@ patch("xash3d-fwgs/engine/common/host.c", [
 ])
 print("marker patch ok")
 PYEOF
-# Round 2 markers: split CL_Init tail vs HTTP_Init vs TLS init.
 RUN python3 - <<'PYEOF2'
 import re
 def patch2(path, pairs):
@@ -181,10 +170,6 @@ s = rx.sub(lambda m: "{ if( evdev_keydebug.value ) Con_Printf( \"hat %d val %d\\
 open(p, "w").write(s)
 print("input patch 2 ok")
 PYEOF4
-# Input patch round 3: Evdev_Init demonstrably never fires its cvar registration
-# (disassembly proves IN_Init tail-calls it, yet evdev_keydebug stays unknown).
-# Stop relying on it: hard-open both event nodes from IN_Init with local
-# prototypes (no header declares these) plus an unmissable MARK.
 RUN python3 - <<'PYEOF5'
 import re
 p = "xash3d-fwgs/engine/client/input/input.c"
