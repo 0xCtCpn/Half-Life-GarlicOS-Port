@@ -1,0 +1,18 @@
+# Copyrighted Half-Life game data - users must supply their own from GOG/Steam.
+# Covers both ./valve/ and the staging copy under HalfLife_SD/ROMS/.../valve/
+valve/
+**/valve/
+
+# Local SD deploy staging (duplicates out/ + valve/, machine-specific)
+HalfLife_SD/
+
+# Device debug breadcrumbs - generated on RG35XX at runtime
+debug.log
+mark.log
+*.log
+
+# Docker build cache / editor droppings
+.docker/
+.vscode/
+*.tmp
+*.bak
