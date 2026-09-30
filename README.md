@@ -1,4 +1,4 @@
-# Half-Life - GarlicOS (RG35XX) Port
+# Half-Life - GarlicOS RG35XX Port
 
 Half-Life on the Anbernic RG35XX running GarlicOS, using the open-source Xash3D FWGS engine
 
