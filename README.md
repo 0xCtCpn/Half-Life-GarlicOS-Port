@@ -64,11 +64,9 @@ What the build does (`Dockerfile`):
 
 To install your own build: copy `out/*` + `HalfLife.sh` + your `valve/` to SD `ROMS/PORTS/HalfLife/`, then copy `hl_armv7hf.so` into `valve/dlls/` and `client_armv7hf.so` into `valve/cl_dlls/`.
 
-If the build fails: make sure Docker Desktop is running first, then re-run `build.bat`. A stale half-finished image can be cleared with `docker rmi xash-garlic`.
-
 ## Debugging
 
-If crashing open `ROMS/PORTS/HalfLife/debug.log` and check/submit the error.
+If crashing open `ROMS/PORTS/HalfLife/debug.log` and check/submit the error
 
 ## Credits
 
