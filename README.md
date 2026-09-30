@@ -48,7 +48,14 @@ Controls: evdev direct (`/dev/input/event*`, no SDL layer). RG35XX mapping TBD o
 Build: `Port_HalfLife\build.bat` (Docker) -> `out/` (`xash3d` + `libxash.so` + `libref_soft.so` + `hl_armv7hf.so`/`client_armv7hf.so` + `libasound` + `libfreetype` + musl `libc.so`/`ld-musl`; no SDL)
 
 Install (No ADB - SD reader only):
+EITHER download the SD-ready zip from Releases (recommended, no Docker needed):
 1. Backup `ROMS` (`README.txt:3`)
+2. Extract the release zip into SD `ROMS/PORTS/` -> `HalfLife.sh` + `HalfLife/`
+3. Copy the CONTENTS of your `valve/` folder (lowercase, from Half-Life WON/Steam)
+   into `ROMS/PORTS/HalfLife/valve/` - ARM libs (`hl_armv7hf.so`,
+   `client_armv7hf.so`) are already pre-placed there; x86 `.so`/`.dll` sit
+   alongside with no clash
+OR build from source with `build.bat`, then:
 2. Copy `out/*` + your `valve/` folder (lowercase) to SD `ROMS/PORTS/HalfLife/` (create it),
    and `HalfLife.sh` to SD `ROMS/PORTS/` next to the other launchers (device
    convention: `.sh` at PORTS root, game files in subfolder)
