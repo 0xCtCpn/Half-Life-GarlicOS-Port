@@ -43,10 +43,10 @@ ROMS/PORTS/
 
 Only needed if you change the engine or want fresh binaries
 
-Prerequisites:
+Prerequisites (Windows):
 
-* Windows PC with Docker Desktop installed
-* ~10GB free disk
+* Docker Desktop
+* WSL2/Hyper-V - virtualization enabled in BIOS
 
 Steps:
 
