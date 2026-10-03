@@ -11,7 +11,7 @@ The game engine and Half-Life's game logic are compiled from C/C++ source straig
 * **Software rendering** - GarlicOS has no working GL driver so the engine draws every frame in software directly to the framebuffer (`libref_soft.so`).
 * **musl libc** - the device ships a 2012-era system libc too old for anything modern compilers emit, so the port carries its own (`libc.so` + `ld-musl-armhf.so.1`, staged to `/tmp` at launch).
 
-What was compiled: the [Xash3D FWGS](https://github.com/FWGS/xash3d-fwgs) engine (open-source recreation of Half-Life's engine) and [hlsdk-portable](https://github.com/FWGS/hlsdk-portable) (Half-Life's released SDK, game logic), plus SDL2/freetype/ALSA as support libraries - all in Docker from source, with device-specific patches applied first.
+What was compiled: the Xash3D FWGS engine (open-source recreation of Half-Life's engine) and hlsdk-portable (Half-Life's released SDK, game logic), plus SDL2/freetype/ALSA as support libraries - all in Docker from source, with device-specific patches applied first.
 
 Everything is packaged neatly in the release zip including engine, game logic, dependencies, and runtime all cross-compiled for `armhf`.
 
@@ -30,9 +30,12 @@ ROMS/PORTS/
     xash3d
     libxash.so
     libref_soft.so     
-    libmenu.so filesystem_stdio.so
-    libasound.so.2 libfreetype.so.6
-    libc.so ld-musl-armhf.so.1
+    libmenu.so
+    filesystem_stdio.so
+    libasound.so.2
+    libfreetype.so.6
+    libc.so
+    ld-musl-armhf.so.1
     share/             
     valve/             # YOUR game data goes here
       dlls/hl_armv7hf.so
