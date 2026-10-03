@@ -45,8 +45,9 @@ Only needed if you change the engine or want fresh binaries
 
 Prerequisites (Windows):
 
-* Docker Desktop
-* WSL2/Hyper-V - virtualization enabled in BIOS
+- Hardware Virtualization enabled in BIOS
+- WSL 2 (Windows Subsystem for Linux 2)
+- Docker Desktop (configured to use the WSL 2 engine)
 
 Steps:
 
